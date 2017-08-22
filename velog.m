@@ -31,6 +31,7 @@ for i = 1:length(plots)
 		end
 		figure('name', ['Probe ' int2str(j) ': ' names(cellfun(@str2num, index) == j){1}]);
 		plot(timestamps, values, '.', 'MarkerSize', 10)
+    xlabel("Time (ps)")
 		grid on
 	catch
 		display(['Probe ' int2str(j) ' could not be plotted'])
