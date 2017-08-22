@@ -24,3 +24,5 @@ Plot data with Octave:
 Two dialog box will ask you to select which probres you wish to plot, and which should be interpreted as signed:
 	
 ![alt text](https://raw.githubusercontent.com/maximebories/velog/master/dialog.png "Dialog")
+
+That selection will be kept in the *state.txt*. To reset, simply delete that file.
