@@ -20,12 +20,13 @@ function [index, names, plots, signs] = ui()
 
   try
     load("state.txt");
+    tab = [cellPlots; index'; names'];
   catch
     cellPlots = repmat({'FALSE'}, 1, N);
     cellSigns = repmat({'FALSE'}, 1, N);
+    tab = [cellPlots; index'; names'];
   end
 
-  tab = [cellPlots; index'; names'];
   S = zenity('Select probes to plot:', {'Plots', 'Probe', 'Name'}, tab);
 
   if iscell(S)
@@ -36,6 +37,7 @@ function [index, names, plots, signs] = ui()
 
   boolPlot = ismember(cellfun(@str2num, index), plots);
   indicesPlots = find(boolPlot);
+  cellPlots = repmat({'FALSE'}, 1, N);
   cellPlots(boolPlot) = {'TRUE'};
 
   tab = [cellSigns(indicesPlots); index(indicesPlots)'; names(indicesPlots)'];
@@ -48,6 +50,7 @@ function [index, names, plots, signs] = ui()
   end
 
   boolSigns = ismember(cellfun(@str2num, index), signs);
+  cellSigns = repmat({'FALSE'}, 1, N);
   cellSigns(boolSigns) = {'TRUE'};
 
   save("state.txt", "cellPlots", "cellSigns");
